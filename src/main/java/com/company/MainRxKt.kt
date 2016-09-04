@@ -18,13 +18,13 @@ fun main(args: Array<String>) {
     }
     val printIt = { it: String -> println(it) }
     subscription += asyncObservable().subscribe(printIt)
-   // subscription += syncObservable().subscribe(printIt)
+    subscription += syncObservable().subscribe(printIt)
     subscription.clear()
     simpleComposition()
 //    asyncWiki("Tiger", "Elephant").subscribe(printArticle)
-//    asyncWikiWithErrorHandling("Tiger", "Elephant").subscribe(printArticle) { e ->
-//        println("--- Error ---\n${e.message}")
-//    }
+    asyncWikiWithErrorHandling("Tiger", "Elephant").subscribe(printArticle) { e ->
+        println("--- Error ---\n${e.message}")
+    }
 //    combineLatest(listOfObservables())
 //    zip(listOfObservables())
 //    simpleObservable().subscribe(FunctionSubscriber<String>()

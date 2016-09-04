@@ -5,6 +5,8 @@ import org.apache.commons.lang3.tuple.Pair;
 
 import java.util.List;
 import java.util.Random;
+import java.util.function.Function;
+import java.util.function.Predicate;
 import java.util.function.ToIntFunction;
 
 import static java.util.Arrays.asList;
@@ -24,7 +26,9 @@ public class FuncEx {
 //        reduce();
 //        reduceCount();
 //        averageHeight();
-        carRace();
+//        carRace();
+        System.out.println(ruleSequence("0101", asList(zero, one, zero)));
+        System.out.println(ruleSequence("0101", asList(zero, zero)));
     }
 
     private static Integer increment(Integer a) {
@@ -112,5 +116,27 @@ public class FuncEx {
                 });
     }
 
+    private static String ruleSequence(String s, List<Function<String, String>> functions) {
+        if (s == null || functions.isEmpty()) {
+            return s;
+        }
+       return ruleSequence(functions.get(0).apply(s), functions.subList(1, functions.size()));
+    }
+
+    private static Function<String, String> zero = x -> {
+        if (x.startsWith("0")) {
+            return x.substring(1);
+        } else {
+            return null;
+        }
+    };
+
+    private static Function<String, String> one = x -> {
+        if (x.startsWith("1")) {
+            return x.substring(1);
+        } else {
+            return null;
+        }
+    };
 
 }
