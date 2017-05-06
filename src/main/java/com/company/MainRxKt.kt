@@ -59,7 +59,7 @@ fun asyncWiki(vararg articleNames: String): Observable<String> =
         observable { subscriber ->
             thread {
                 articleNames.toObservable()
-                        .flatMap { name -> URL("http://en.wikipedia.org/wiki/$name").toScannerObservable().first() }
+                        .flatMap { name -> URL("https://en.wikipedia.org/wiki/$name").toScannerObservable().first() }
                         .subscribe(subscriber)
             }
         }
@@ -68,7 +68,7 @@ fun asyncWikiWithErrorHandling(vararg articleNames: String): Observable<String> 
         observable { subscriber ->
             thread {
                 articleNames.toObservable()
-                        .flatMap { name -> URL("http://en.wikipedia.org/wiki/$name").toScannerObservable().first() }
+                        .flatMap { name -> URL("https://en.wikipedia.org/wiki/$name").toScannerObservable().first() }
                         .onError { e ->
                             subscriber.onError(e) }
                         .subscribe(subscriber)

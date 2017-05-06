@@ -48,7 +48,7 @@ public class Main {
         }
 
         private void printNotification(Observable o, Object arg) {
-            System.out.print(this + " Observable: " + o.toString() + "arg: " + arg.toString());
+            System.out.println(this + " Observable: " + o.toString() + " arg: " + arg.toString());
         }
     }
 
